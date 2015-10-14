@@ -2,5 +2,5 @@
 
 <div id="content">
 	<h1>{title}</h1>
-	{! <p>i18n string (): {translated}</p> !}
+	<p>i18n string: {@message type="content" key="index.translated"/}</p>
 </div>

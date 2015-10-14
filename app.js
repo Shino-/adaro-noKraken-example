@@ -8,18 +8,26 @@ var bodyParser = require('body-parser');
 // CHANGE: Adding adaro
 var dustjs = require('adaro');
 
+// CHANGE2: Adding makara and bcp47
+var makara = require('makara');
+var bcp47mw = require('express-bcp47');
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
 
-// CHANGE: Setting adaro as app.engine
-app.engine('dust', dustjs.dust({ cache: false }));
+// CHANGE2: Adding helpers
+var helpers = [ 'dust-makara-helpers' ];
+
+// CHANGE: Setting adaro as app.engine CHANGE2: Adding helpers
+app.engine('dust', dustjs.dust({ cache: false, helpers: helpers}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-// CHANGE: setting view engine to dust
+// CHANGE: Setting view engine to dust
 app.set('view engine', 'dust');
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -28,6 +36,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// CHANGE2: Using makara and bcp47
+app.use(bcp47mw({ defaultLocale: "en-US", vary: true }));
+app.use(makara({
+  i18n: {
+    contentPath: path.resolve(__dirname, 'locales'),
+    fallback: 'en-US'
+  }
+}));
 
 app.use('/', routes);
 app.use('/users', users);
