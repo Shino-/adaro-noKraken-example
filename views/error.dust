@@ -1,0 +1,7 @@
+{> layout/}
+
+<div id="content">
+	<h1>{title} -- Error: {message}</h1>
+  	<h2>Error status: {error.status}</h2>
+	<pre><code>{error.stack}</code></pre>
+</div>
