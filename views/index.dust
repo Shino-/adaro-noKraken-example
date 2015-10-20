@@ -2,5 +2,12 @@
 
 <div id="content">
 	<h1>{title}</h1>
-	<p>i18n string: {@message type="content" key="index.translated"/}</p>
+	<h2>i18n string:</h2>
+	<p>{@message type="content" key="index.translated"/}</p>
+	<form action="/email" method="POST">
+	<h2>Localized email:</h2>
+	<label for="email">Email to send to: </label>
+	<input id="email" type="email" name="email" placeholder="yourEmailHere@example.com"/><br/>
+	<button type="submit">Send it!</button>
+	</form>
 </div>

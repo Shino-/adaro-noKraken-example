@@ -13,7 +13,8 @@ var makara = require('makara');
 var bcp47mw = require('express-bcp47');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+// CHANGE3: replace users route with email route
+var email = require('./routes/email');
 
 var app = express();
 
@@ -47,7 +48,8 @@ app.use(makara({
 }));
 
 app.use('/', routes);
-app.use('/users', users);
+// CHANGE3: replace users route with email route
+app.use('/email', email);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
